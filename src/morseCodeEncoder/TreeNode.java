@@ -4,7 +4,8 @@ public class TreeNode {
 	
 	// Data fields
 	public String data;
-    public TreeNode left, right;
+    public TreeNode left;
+	public TreeNode right;
     
     // Constructors
     public TreeNode(String value) { data = value; }

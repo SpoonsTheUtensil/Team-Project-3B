@@ -20,6 +20,15 @@ public class EncoderMain {
 		String inputToParse = userInput.next();
 		System.out.println(Encoder.encode(inputToParse, root));
 		userInput.close();
+		
+		//testTreeOrder(root);
+	}
+	public static void testTreeOrder(TreeNode current) {      
+        if (current != null) {
+            testTreeOrder(current.left);
+            System.out.print(current.data + " ");  
+            testTreeOrder(current.right);
+        }
 	}
 	
 	public static TreeNode BuildTree(File codex) throws FileNotFoundException{
@@ -30,7 +39,7 @@ public class EncoderMain {
 		
 		while (fileReader.hasNext()) {
 			String token = fileReader.nextLine();
-			token = token.substring(1);
+			token = token.substring(0);
 			TreeNode current = root;
 			for (int i = 0; i < token.length(); i++) {
 				if (token.substring(i, i + 1).equals(".")) {
@@ -46,7 +55,7 @@ public class EncoderMain {
 					current = current.right;
 				}
 			}
-			current.data = token;
+			current.data = token.charAt(0);
 		}
 		fileReader.close();
 		return root;

@@ -1,42 +1,40 @@
-package morseCodeEncoder;
+package morseCodeEncoder
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class EncoderMain {
+public class MorseMain {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		
+
 		// Creates a file object
 		File morseCodeCodex = new File("Morse_Code.txt");
-		//BuildTree(morseCodeCodex);
-		TreeNode root = BuildTree(morseCodeCodex);
-		
-		Scanner userInput = new Scanner(System.in);
-		
-		System.out.println("What is the string you would like to encode?");
-		String inputToParse = userInput.next();
-		System.out.println(Encoder.encode(inputToParse, root));
-		userInput.close();
-		
-		//testTreeOrder(root);
+		TreeNode root = buildTree(morseCodeCodex);
+
+		// read input string
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter input string:");
+		String input = scanner.nextLine();
+
+		// encode
+		String encoded = Encoder.encode(input, root);
+		System.out.println("Encoded: " + encoded);
+
+		// decode the encoded string
+		System.out.println("Decoded: " + Decoder.decode(encoded, root));
+
+		scanner.close();
 	}
-	public static void testTreeOrder(TreeNode current) {      
-        if (current != null) {
-            testTreeOrder(current.left);
-            System.out.print(current.data + " ");  
-            testTreeOrder(current.right);
-        }
-	}
-	
-	public static TreeNode BuildTree(File codex) throws FileNotFoundException{
-		
+
+	// build tree
+	public static TreeNode buildTree(File codex) throws FileNotFoundException {
+
 		FileInputStream fileToRead = new FileInputStream(codex);
 		Scanner fileReader = new Scanner(fileToRead);
 		TreeNode root = new TreeNode(null, null, null);
-		
+
 		while (fileReader.hasNext()) {
 			String token = fileReader.nextLine();
 			token = token.substring(0);
@@ -47,8 +45,7 @@ public class EncoderMain {
 						current.left = new TreeNode(null);
 					}
 					current = current.left;
-				}
-				else if (token.substring(i, i + 1).equals("-")) {
+				} else if (token.substring(i, i + 1).equals("-")) {
 					if (current.right == null) {
 						current.right = new TreeNode(null);
 					}

@@ -18,4 +18,4 @@ Logan Wise - [Github](https://github.com/lw227272)  |
 Zachary Deall - [Github](https://github.com/ZacharyDeall)  |
 
 
-**[| Project Design |](https://docs.google.com/document/d/1UVWVVi7_AffA-1AlaMBTTNt7EM8raghsaXRuTjjbM-w/edit)**
+**[| Project Design |](https://docs.google.com/document/d/1j65mTnNWI-aq-sRUcUJuw2EOe1YvPDA1OxaIp_VCzX4/edit?usp=sharing)**

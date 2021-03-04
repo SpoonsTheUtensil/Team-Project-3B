@@ -11,7 +11,8 @@ public class TreeNode {
 	public TreeNode(Character value) {
 		data = value;
 	}
-
+	
+	
 	public TreeNode(Character value, TreeNode leftChild, TreeNode rightChild) {
 		data = value;
 		left = leftChild;

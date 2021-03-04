@@ -1,4 +1,4 @@
-package morseCodeEncoder
+package morseCodeEncoder;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,39 +13,45 @@ public class MorseMain {
 		File morseCodeCodex = new File("Morse_Code.txt");
 		TreeNode root = buildTree(morseCodeCodex);
 
-		// read input string
+		// Read input string
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter input string:");
+		System.out.print("Enter input string: ");
 		String input = scanner.nextLine();
 
-		// encode
+		// Encode input String
 		String encoded = Encoder.encode(input, root);
 		System.out.println("Encoded: " + encoded);
 
-		// decode the encoded string
+		// Decode the encoded string
 		System.out.println("Decoded: " + Decoder.decode(encoded, root));
 
+		// Close scanner
 		scanner.close();
 	}
 
-	// build tree
+	// Read from morse code file to build tree
 	public static TreeNode buildTree(File codex) throws FileNotFoundException {
 
 		FileInputStream fileToRead = new FileInputStream(codex);
 		Scanner fileReader = new Scanner(fileToRead);
 		TreeNode root = new TreeNode(null, null, null);
 
+		
 		while (fileReader.hasNext()) {
 			String token = fileReader.nextLine();
 			token = token.substring(0);
 			TreeNode current = root;
+			
 			for (int i = 0; i < token.length(); i++) {
+				
 				if (token.substring(i, i + 1).equals(".")) {
 					if (current.left == null) {
 						current.left = new TreeNode(null);
 					}
 					current = current.left;
-				} else if (token.substring(i, i + 1).equals("-")) {
+				} 
+				
+				else if (token.substring(i, i + 1).equals("-")) {
 					if (current.right == null) {
 						current.right = new TreeNode(null);
 					}
@@ -54,6 +60,8 @@ public class MorseMain {
 			}
 			current.data = token.charAt(0);
 		}
+		
+		// Close file reader
 		fileReader.close();
 		return root;
 	}
